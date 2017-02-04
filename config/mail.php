@@ -110,7 +110,7 @@ return [
 ];
 
 
-// working code
+// Example mailtrap code. Copy the code below, clear everything and paste this(with your credentials).
 
 /*
 
