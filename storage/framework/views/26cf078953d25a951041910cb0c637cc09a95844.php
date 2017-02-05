@@ -11,7 +11,9 @@
 
                 <hr>
                 
-                <form method="post">
+                <form method="post" action="<?php echo e(url('contact')); ?>">
+                    <?php echo e(csrf_field()); ?>
+
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Name" class="form-control">
                     </div>
