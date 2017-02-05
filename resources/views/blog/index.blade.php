@@ -19,6 +19,11 @@
 
 			<h2>{{ $post->title }}</h2>
 			<div class="lead"> {!! substr($post->body, 0, 150) !!} {{ strlen($post->body) > 150 ? "..." : "" }} </div>
+			<div>
+				@foreach($post->tags as $tag)
+				<span class="label label-danger">{{ $tag->name }}</span>
+				@endforeach
+			</div>
 			<p>{{ $post->author }} | {{ $post->category->name }}</p>
 			<h5>Published : {{ date('M j, Y', strtotime($post->created_at)) }}</h5>
 			<a href="{{ url('blog/'.$post->slug) }}" class="btn btn-primary btn-md">Read More</a>

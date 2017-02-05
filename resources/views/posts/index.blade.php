@@ -28,6 +28,11 @@
 					{!! substr($post->body, 0, 150) !!} {{ strlen($post->body) > 150 ? "..." : "" }}
 				</div>
 				<div>
+					@foreach($post->tags as $tag)
+						<span class="label label-primary">{{ $tag->name }}</span>
+					@endforeach
+				</div>
+				<div>
 					<p>{{ $post->author }} | {{ $post->category->name }}</p>
 				</div>
 				<div>

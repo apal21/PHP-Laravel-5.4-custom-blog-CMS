@@ -2,6 +2,12 @@
 
 @section('title', ' | Edit Post')
 
+@section('stylesheets')
+
+	{!! Html::style('css/select2.min.css') !!}
+
+@endsection
+
 @section('content')
 
 	<div class="container">
@@ -25,6 +31,9 @@
 
 			{{ Form::label('category_id', 'Category :') }}
 			{{ Form::select('category_id', $categories, null, ['class' => 'form-control input-lg']) }}
+
+			{{ Form::label('tags', 'Tags :') }}
+			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control input-lg select2-multiple', 'multiple' => 'multiple']) }}
 
 			{{ Form::label('body', 'Body :') }}
 			{{ Form::textarea('body', null, ['class' => 'form-control input-lg']) }}
@@ -61,5 +70,15 @@
 		{!! Form::close() !!}
 
 	</div>
+
+@endsection
+
+@section('scripts')
+
+	{!! Html::script('js/select2.full.min.js') !!}
+	<script type="text/javascript">
+		$(".select2-multiple").select2();
+		$(".select2-multiple").select2().val({!! json_encode($post->tags->pluck('id')) !!}).trigger('change');
+	</script>
 
 @endsection

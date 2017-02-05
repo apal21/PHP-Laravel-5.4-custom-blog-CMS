@@ -29,8 +29,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ Auth::user()->name }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li>{!! Html::linkroute('posts.index', 'Dashboard') !!}</li>
-              <li>{!! Html::linkroute('posts.create', 'Create New Post') !!}</li>
               <li>{!! Html::linkroute('categories.index', 'Categories') !!}</li>
+              <li>{!! Html::linkroute('tags.index', 'Tags') !!}</li>
               <li role="separator" class="divider"></li>
               <li>{!! Html::linkroute('logout', 'Log Out') !!}</li>
             </ul>

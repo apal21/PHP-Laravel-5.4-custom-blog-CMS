@@ -9,3 +9,7 @@
 .login-spacing-top {
 	margin-top: 8px;
 }
+
+.nolink, .nolink:hover {
+	color: black;
+}

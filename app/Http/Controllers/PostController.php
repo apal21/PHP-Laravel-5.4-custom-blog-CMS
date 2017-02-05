@@ -5,6 +5,7 @@ namespace blog\Http\Controllers;
 use Illuminate\Http\Request;
 use blog\Http\Controllers\Controller;
 use blog\Post;
+use blog\Tag;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use blog\Category;
@@ -36,7 +37,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->with('categories', $categories);
+        $tags = Tag::all();
+        return view('posts.create')->with('categories', $categories)->with('tags', $tags);
     }
 
     /**
@@ -65,6 +67,8 @@ class PostController extends Controller
         $post->body = $request->body;
 
         $post->save();
+
+        $post->tags()->sync($request->tags, false);
 
         Session::flash('success', 'The blog post was successfully saved!');
 
@@ -97,7 +101,13 @@ class PostController extends Controller
         foreach ($categories as $category) {
             $cats[$category->id] = $category->name;
         }
-        return view('posts.edit')->with('post', $post)->with('categories', $cats);
+        $tagsForThisPost = json_encode($post->tags->pluck('id'));
+        $tags = Tag::all();
+        $tags2 = [];
+        foreach ($tags as $tag) {
+            $tags2[$tag->id] = $tag->name;
+        }
+        return view('posts.edit')->with('post', $post)->with('categories', $cats)->with('tags', $tags2);
     }
 
     /**
@@ -135,6 +145,12 @@ class PostController extends Controller
 
             $post->save();
 
+            if(isset($request->tags)) {
+                $post->tags()->sync($request->tags, false);
+            } else {
+                $post->tags()->sync([]);
+            }
+
             Session::flash('success', 'The blog post was successfully updated!');
 
             return redirect()->route('posts.show', $post->id);
@@ -149,6 +165,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        $post->tags()->detach();
 
         $post->delete();
 

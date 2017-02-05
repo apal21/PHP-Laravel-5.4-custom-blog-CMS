@@ -12,6 +12,11 @@
 			<hr>
 		<div class="col-md-8">
 			<div class="lead">{!! $post->body !!}</div>
+			<div>
+				@foreach($post->tags as $tag)
+					<span class="label label-primary">{{ $tag->name }}</span>
+				@endforeach
+			</div>
 		</div>
 
 		<div class="col-md-4">
