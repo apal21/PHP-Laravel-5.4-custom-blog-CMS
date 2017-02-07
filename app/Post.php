@@ -15,4 +15,9 @@ class Post extends Model
 
         return $this->belongsToMany('blog\Tag');
     }
+
+    public function comments() {
+
+    	return $this->hasMany('blog\Comment');
+    }
 }
