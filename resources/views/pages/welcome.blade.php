@@ -25,7 +25,7 @@
 
               <div class="post">
                 <h2>{{ $post->title }}</h2>
-                <div class="lead">{!! substr($post->body, 0, 150) !!} {{ strlen($post->body) > 150 ? "..." : "" }}</div>
+                <div class="lead">{!! substr(strip_tags($post->body), 0, 150) !!} {{ strlen(strip_tags($post->body)) > 150 ? "..." : "" }}</div>
                 <div>
                   @foreach($post->tags as $tag)
                     <span class="label label-danger">{{ $tag->name }}</span>
