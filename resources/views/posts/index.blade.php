@@ -25,7 +25,7 @@
 					<h2>{{ $post->title }}</h2>
 				</div>
 				<div class="lead">
-					{!! substr($post->body, 0, 150) !!} {{ strlen($post->body) > 150 ? "..." : "" }}
+					{!! substr(strip_tags($post->body), 0, 150) !!} {{ strlen(strip_tags($post->body)) > 150 ? "..." : "" }}
 				</div>
 				<div>
 					@foreach($post->tags as $tag)

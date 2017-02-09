@@ -23,7 +23,7 @@
 					<h2><?php echo e($post->title); ?></h2>
 				</div>
 				<div class="lead">
-					<?php echo substr($post->body, 0, 150); ?> <?php echo e(strlen($post->body) > 150 ? "..." : ""); ?>
+					<?php echo substr(strip_tags($post->body), 0, 150); ?> <?php echo e(strlen(strip_tags($post->body)) > 150 ? "..." : ""); ?>
 
 				</div>
 				<div>
