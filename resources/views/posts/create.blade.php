@@ -6,6 +6,16 @@
 
 	{!! Html::style('css/parsley.css') !!}
 	{!! Html::style('css/select2.min.css') !!}
+	<!-- This looks stupid(js in stylesheets) but this is the best way -->
+	<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  	
+  	<script>
+  		tinymce.init({
+  			selector:'textarea',
+  			plugins: 'code,preview,link,autolink,lists,spellchecker,pagebreak,layer,table,save,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,template'
+  		});
+  	</script>
+	
 
 @endsection
 
@@ -32,16 +42,16 @@
 				</select>
 
 				{{ Form::label('tags', 'Tags :') }}
-				<select class="form-control select2-multiple" name="tags[]" multiple="multiple">
+				<select class="select2-multiple form-control" name="tags[]" multiple="multiple">
 					@foreach($tags as $tag)
 					<option value="{{ $tag->id }}">{{ $tag->name }}</option>
 					@endforeach
 				</select>
 
 				{{ Form::label('body', 'Body :') }}
-				{{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
+				{{ Form::textarea('body', null, ['class' => 'form-control input-lg']) }}
 
-				{{ Form::submit('Create New Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top:20px;')) }}
+				{{ Form::submit('Create New Post', array('class' => 'btn btn-success btn-lg btn-block form-spacing-top')) }}
 
 			{!! Form::close() !!}
 
@@ -56,6 +66,10 @@
 	{!! Html::script('js/select2.full.min.js') !!}
 	<script type="text/javascript">
 		$(".select2-multiple").select2();
+	</script>
+
+	<script type="text/javascript">
+		CKEDITOR.replace( 'editor1' );
 	</script>
 
 @endsection

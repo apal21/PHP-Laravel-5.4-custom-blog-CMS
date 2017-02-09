@@ -5,7 +5,14 @@
 @section('stylesheets')
 
 	{!! Html::style('css/select2.min.css') !!}
-
+	<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  	
+  	<script>
+  		tinymce.init({
+  			selector:'textarea',
+  			plugins: 'code,preview,link,autolink,lists,spellchecker,pagebreak,layer,table,save,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,template'
+  		});
+  	</script>
 @endsection
 
 @section('content')

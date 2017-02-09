@@ -6,6 +6,16 @@
 
 	<?php echo Html::style('css/select2.min.css'); ?>
 
+	<!-- This looks stupid(js in stylesheets) but this is the best way -->
+	<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  	
+  	<script>
+  		tinymce.init({
+  			selector:'textarea',
+  			plugins: 'code,preview,link,autolink,lists,spellchecker,pagebreak,layer,table,save,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,template'
+  		});
+  	</script>
+	
 
 <?php $__env->stopSection(); ?>
 
@@ -38,7 +48,7 @@
 
 				<?php echo e(Form::label('tags', 'Tags :')); ?>
 
-				<select class="form-control select2-multiple" name="tags[]" multiple="multiple">
+				<select class="select2-multiple form-control" name="tags[]" multiple="multiple">
 					<?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<option value="<?php echo e($tag->id); ?>"><?php echo e($tag->name); ?></option>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -46,10 +56,10 @@
 
 				<?php echo e(Form::label('body', 'Body :')); ?>
 
-				<?php echo e(Form::textarea('body', null, array('class' => 'form-control', 'required' => ''))); ?>
+				<?php echo e(Form::textarea('body', null, ['class' => 'form-control input-lg'])); ?>
 
 
-				<?php echo e(Form::submit('Create New Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top:20px;'))); ?>
+				<?php echo e(Form::submit('Create New Post', array('class' => 'btn btn-success btn-lg btn-block form-spacing-top'))); ?>
 
 
 			<?php echo Form::close(); ?>
@@ -68,6 +78,10 @@
 
 	<script type="text/javascript">
 		$(".select2-multiple").select2();
+	</script>
+
+	<script type="text/javascript">
+		CKEDITOR.replace( 'editor1' );
 	</script>
 
 <?php $__env->stopSection(); ?>
