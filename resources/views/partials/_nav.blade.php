@@ -37,7 +37,7 @@
           </li>
         @else
 
-          {!! Html::linkroute('login', 'Log In', null, ['class' => 'btn btn-primary login-spacing-top']) !!}
+          <li class="{{ Request::is('login') ? "active" : "" }}">{!! Html::linkroute('login', 'Log In') !!}</li>
 
         @endif
 

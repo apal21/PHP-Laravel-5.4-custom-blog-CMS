@@ -14,23 +14,23 @@
                 <hr>
                 
                 <form method="post" action="{{ url('contact') }}">
-                    {{ csrf_field() }}
+                {{ Form::open(['url' => 'contact', 'method' => 'post']) }}
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Name" class="form-control">
+                        {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name']) }}
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="email" placeholder="Email" class="form-control">
+                        {{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) }}
                     </div>
 
                     <div class="form-group">
-                        <textarea name="subject" placeholder="Subject" class="form-control"></textarea>
+                        {{ Form::textarea('subject', null, ['class' => 'form-control', 'placeholder' => 'Subject', 'rows' => '5']) }}
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" name="submit" value="Send Message" class="btn btn-success">
+                        {{ Form::submit('Send Message', ['class' => 'btn btn-success']) }}
                     </div>
-                </form>
+                {{ Form::close() }}
             </div>
 
             <div class="col-md-3 col-md-offset-1">

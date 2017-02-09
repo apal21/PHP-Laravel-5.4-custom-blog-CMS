@@ -12,24 +12,29 @@
                 <hr>
                 
                 <form method="post" action="<?php echo e(url('contact')); ?>">
-                    <?php echo e(csrf_field()); ?>
+                <?php echo e(Form::open(['url' => 'contact', 'method' => 'post'])); ?>
 
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="Name" class="form-control">
+                        <?php echo e(Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Name'])); ?>
+
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="email" placeholder="Email" class="form-control">
+                        <?php echo e(Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email'])); ?>
+
                     </div>
 
                     <div class="form-group">
-                        <textarea name="subject" placeholder="Subject" class="form-control"></textarea>
+                        <?php echo e(Form::textarea('subject', null, ['class' => 'form-control', 'placeholder' => 'Subject', 'rows' => '5'])); ?>
+
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" name="submit" value="Send Message" class="btn btn-success">
+                        <?php echo e(Form::submit('Send Message', ['class' => 'btn btn-success'])); ?>
+
                     </div>
-                </form>
+                <?php echo e(Form::close()); ?>
+
             </div>
 
             <div class="col-md-3 col-md-offset-1">

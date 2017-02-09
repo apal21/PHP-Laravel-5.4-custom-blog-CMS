@@ -37,8 +37,7 @@
           </li>
         <?php else: ?>
 
-          <?php echo Html::linkroute('login', 'Log In', null, ['class' => 'btn btn-primary login-spacing-top']); ?>
-
+          <li class="<?php echo e(Request::is('login') ? "active" : ""); ?>"><?php echo Html::linkroute('login', 'Log In'); ?></li>
 
         <?php endif; ?>
 

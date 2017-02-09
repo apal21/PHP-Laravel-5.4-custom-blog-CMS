@@ -15,6 +15,33 @@
 					<span class="label label-primary"><?php echo e($tag->name); ?></span>
 				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 			</div>
+			<hr>
+			<div id="backend-comments" style="form-spacing-top">
+				<h3>Comments <small><?php echo e($post->comments()->count()); ?> Comments</small></h3>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Comment</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $__currentLoopData = $post->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+						<tr>
+							<td><?php echo e($comment->name); ?></td>
+							<td><?php echo e($comment->email); ?></td>
+							<td><?php echo e($comment->comment); ?></td>
+							<td>
+							<a href="<?php echo e(route('comments.edit', $comment->id)); ?>" class="btn btn-xs btn-primary glyphicon glyphicon-pencil"></a>
+							<a href="<?php echo e(route('comments.delete', $comment->id)); ?>" class="btn btn-xs btn-danger glyphicon glyphicon-trash"></a>
+								</td>
+						</tr>
+					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+				</tbody>
+			</table>
 		</div>
 
 		<div class="col-md-4">
