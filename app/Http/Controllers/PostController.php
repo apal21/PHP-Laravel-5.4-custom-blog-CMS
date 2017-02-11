@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use blog\Category;
 use Purifier;
+use Image;
+use Storage;
 
 
 class PostController extends Controller
@@ -56,6 +58,7 @@ class PostController extends Controller
                 'slug'  => 'required|alpha_dash|max:100|unique:posts,slug',
                 'category_id' => 'required|integer',
                 'body'  => 'required',
+                'featured_image' => 'sometimes|image'
             ));
 
         // store in the database
@@ -66,6 +69,15 @@ class PostController extends Controller
         $post->author = Auth::user()->name;
         $post->category_id = $request->category_id;
         $post->body = Purifier::clean($request->body, "youtube");
+
+        if($request->hasFile('featured_image')) {
+            $image = $request->file('featured_image');
+            $filename = time().'-'.$image->getClientOriginalName();
+            $location = public_path('images/'.$filename);
+            Image::make($image)->save($location);
+
+            $post->image = $filename;
+        }
 
         $post->save();
 
@@ -126,39 +138,45 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        if ($request->input('slug') == $post->slug) {
-            
-            $this->validate($request, array(
+        $this->validate($request, array(
                 'title' => 'required|max:255',
+                'slug'  => "required|alpha_dash|max:100|unique:posts,slug,$id",
                 'category_id' => 'required|integer',
                 'body'  => 'required',
+                'featured_image' => 'image'
             ));
-        } else {
 
-            $this->validate($request, array(
-                    'title' => 'required|max:255',
-                    'slug'  => 'required|alpha_dash|max:100|unique:posts,slug',
-                    'category_id' => 'required|integer',
-                    'body'  => 'required',
-                ));
+        $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
+        $post->category_id = $request->input('category_id');
+        $post->body = Purifier::clean($request->input('body'), "youtube");
+
+        if($request->hasFile('featured_image')) {
+
+            $image = $request->file('featured_image');
+            $filename = time().'-'.$image->getClientOriginalName();
+            $location = public_path('images/'.$filename);
+            Image::make($image)->save($location);
+
+            $oldFilename = $post->image;
+
+            $post->image = $filename;
+
+            //comment this if you don't want to delete existing image
+            Storage::delete($oldFilename);
         }
 
-            $post->title = $request->input('title');
-            $post->slug = $request->input('slug');
-            $post->category_id = $request->input('category_id');
-            $post->body = Purifier::clean($request->input('body'), "youtube");
+        $post->save();
 
-            $post->save();
+        if(isset($request->tags)) {
+            $post->tags()->sync($request->tags, false);
+        } else {
+            $post->tags()->sync([]);
+        }
 
-            if(isset($request->tags)) {
-                $post->tags()->sync($request->tags, false);
-            } else {
-                $post->tags()->sync([]);
-            }
+        Session::flash('success', 'The blog post was successfully updated!');
 
-            Session::flash('success', 'The blog post was successfully updated!');
-
-            return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -172,6 +190,9 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $post->tags()->detach();
+
+        //comment the code below if you don't want to delete the image even after the deleting the post
+        Storage::delete($post->image);
 
         $post->delete();
 

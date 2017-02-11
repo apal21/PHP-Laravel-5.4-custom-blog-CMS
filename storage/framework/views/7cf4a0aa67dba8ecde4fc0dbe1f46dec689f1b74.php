@@ -26,7 +26,7 @@
 			<h1>Create New Post</h1>
 			<hr>
 
-			<?php echo Form::open(['route' => 'posts.store', 'data-parsley-validate' => '']); ?>
+			<?php echo Form::open(['route' => 'posts.store', 'data-parsley-validate' => '', 'files' => true]); ?>
 
 			    
 				<?php echo e(Form::label('title', 'Title :')); ?>
@@ -54,6 +54,11 @@
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				</select>
 
+				<?php echo e(Form::label('featured_image', 'Upload Featured Image:')); ?>
+
+				<?php echo e(Form::file('featured_image')); ?>
+
+
 				<?php echo e(Form::label('body', 'Body :')); ?>
 
 				<?php echo e(Form::textarea('body', null, ['class' => 'form-control input-lg'])); ?>
@@ -78,10 +83,6 @@
 
 	<script type="text/javascript">
 		$(".select2-multiple").select2();
-	</script>
-
-	<script type="text/javascript">
-		CKEDITOR.replace( 'editor1' );
 	</script>
 
 <?php $__env->stopSection(); ?>

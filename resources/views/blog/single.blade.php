@@ -10,6 +10,9 @@
 
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
+			@if($post->image != null)
+			<img src="{{ asset('images/'.$post->image) }}" class="featured-image img-responsive">
+			@endif
 			<h1>{{ $post->title }}</h1>
 			<hr>
 			<div class="lead">{!! $post->body !!}</div>

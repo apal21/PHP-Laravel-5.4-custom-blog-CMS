@@ -1,4 +1,4 @@
-.btn {
+.btn, .form-control {
 	border-radius: 0;
 }
 .btn-h1-spacing {
@@ -41,4 +41,11 @@
 .comment-content {
 	clear: both;
 	margin-top: 15px;
+}
+
+.featured-image {
+	width: 100%;
+	height: auto;
+	max-height: 300px;
+	object-fit: cover;
 }

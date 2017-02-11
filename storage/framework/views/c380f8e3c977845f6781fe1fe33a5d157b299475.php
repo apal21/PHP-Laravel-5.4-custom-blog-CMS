@@ -8,6 +8,9 @@
 
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
+			<?php if($post->image != null): ?>
+			<img src="<?php echo e(asset('images/'.$post->image)); ?>" class="featured-image img-responsive">
+			<?php endif; ?>
 			<h1><?php echo e($post->title); ?></h1>
 			<hr>
 			<div class="lead"><?php echo $post->body; ?></div>

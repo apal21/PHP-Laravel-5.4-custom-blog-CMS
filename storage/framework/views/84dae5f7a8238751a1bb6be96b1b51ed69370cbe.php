@@ -3,12 +3,13 @@
 <?php $__env->startSection('content'); ?>
 
 	<div class="row">
-		<div class="container">
+		<div class="col-md-8">
+			<?php if($post->image != null): ?>
+                <img src="<?php echo e(asset('images/'.$post->image)); ?>" class="featured-image img-responsive">
+                <?php endif; ?>
 			<h1><?php echo e($post->title); ?></h1>
-		</div>
 
 			<hr>
-		<div class="col-md-8">
 			<div class="lead"><?php echo $post->body; ?></div>
 			<div>
 				<?php $__currentLoopData = $post->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

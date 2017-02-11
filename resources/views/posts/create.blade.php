@@ -26,7 +26,7 @@
 			<h1>Create New Post</h1>
 			<hr>
 
-			{!! Form::open(['route' => 'posts.store', 'data-parsley-validate' => '']) !!}
+			{!! Form::open(['route' => 'posts.store', 'data-parsley-validate' => '', 'files' => true]) !!}
 			    
 				{{ Form::label('title', 'Title :') }}
 				{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '256')) }}			
@@ -48,6 +48,9 @@
 					@endforeach
 				</select>
 
+				{{ Form::label('featured_image', 'Upload Featured Image:') }}
+				{{ Form::file('featured_image') }}
+
 				{{ Form::label('body', 'Body :') }}
 				{{ Form::textarea('body', null, ['class' => 'form-control input-lg']) }}
 
@@ -66,10 +69,6 @@
 	{!! Html::script('js/select2.full.min.js') !!}
 	<script type="text/javascript">
 		$(".select2-multiple").select2();
-	</script>
-
-	<script type="text/javascript">
-		CKEDITOR.replace( 'editor1' );
 	</script>
 
 @endsection

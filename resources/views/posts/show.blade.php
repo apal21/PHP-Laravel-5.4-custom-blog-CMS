@@ -5,12 +5,13 @@
 @section('content')
 
 	<div class="row">
-		<div class="container">
+		<div class="col-md-8">
+			@if($post->image != null)
+                <img src="{{ asset('images/'.$post->image) }}" class="featured-image img-responsive">
+                @endif
 			<h1>{{ $post->title }}</h1>
-		</div>
 
 			<hr>
-		<div class="col-md-8">
 			<div class="lead">{!! $post->body !!}</div>
 			<div>
 				@foreach($post->tags as $tag)

@@ -23,6 +23,9 @@
               @foreach($posts as $post)
 
               <div class="post">
+                @if($post->image != null)
+                <img src="{{ asset('images/'.$post->image) }}" class="featured-image img-responsive">
+                @endif
                 <h2>{{ $post->title }}</h2>
                 <div class="lead">{!! substr(strip_tags($post->body), 0, 150) !!} {{ strlen(strip_tags($post->body)) > 150 ? "..." : "" }}</div>
                 <div>

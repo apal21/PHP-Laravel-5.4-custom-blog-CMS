@@ -26,7 +26,7 @@
 
 	<div class="row">
 
-		<?php echo Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']); ?>
+		<?php echo Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files' => true]); ?>
 
 		<div class="col-md-8">
 
@@ -48,6 +48,11 @@
 			<?php echo e(Form::label('tags', 'Tags :')); ?>
 
 			<?php echo e(Form::select('tags[]', $tags, null, ['class' => 'form-control input-lg select2-multiple', 'multiple' => 'multiple'])); ?>
+
+
+			<?php echo e(Form::label('featured_image', 'Update Featured Image:')); ?>
+
+			<?php echo e(Form::file('featured_image')); ?>
 
 
 			<?php echo e(Form::label('body', 'Body :')); ?>
