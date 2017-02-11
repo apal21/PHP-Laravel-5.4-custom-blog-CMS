@@ -9,6 +9,7 @@ use blog\Tag;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use blog\Category;
+use Purifier;
 
 
 class PostController extends Controller
@@ -64,7 +65,7 @@ class PostController extends Controller
         $post->slug = $request->slug;
         $post->author = Auth::user()->name;
         $post->category_id = $request->category_id;
-        $post->body = $request->body;
+        $post->body = Purifier::clean($request->body, "youtube");
 
         $post->save();
 
@@ -145,7 +146,7 @@ class PostController extends Controller
             $post->title = $request->input('title');
             $post->slug = $request->input('slug');
             $post->category_id = $request->input('category_id');
-            $post->body = $request->input('body');
+            $post->body = Purifier::clean($request->input('body'), "youtube");
 
             $post->save();
 

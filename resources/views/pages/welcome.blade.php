@@ -30,7 +30,7 @@
                     <span class="label label-danger">{{ $tag->name }}</span>
                   @endforeach
                 </div>
-                <p>{{ $post->author }} | {{ $post->category->name }}</p>
+                <p>{{ $post->author }} @if($post->category->id)| {{ $post->category->name }}@endif</p>
                 <p>{{ date('M j, Y', strtotime($post->created_at)) }}</p>
                 <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-primary btn-md">Read More</a>
               </div>

@@ -24,11 +24,12 @@
     20 => 'Illuminate\\Validation\\ValidationServiceProvider',
     21 => 'Illuminate\\View\\ViewServiceProvider',
     22 => 'Collective\\Html\\HtmlServiceProvider',
-    23 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    24 => 'blog\\Providers\\AppServiceProvider',
-    25 => 'blog\\Providers\\AuthServiceProvider',
-    26 => 'blog\\Providers\\EventServiceProvider',
-    27 => 'blog\\Providers\\RouteServiceProvider',
+    23 => 'Mews\\Purifier\\PurifierServiceProvider',
+    24 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    25 => 'blog\\Providers\\AppServiceProvider',
+    26 => 'blog\\Providers\\AuthServiceProvider',
+    27 => 'blog\\Providers\\EventServiceProvider',
+    28 => 'blog\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -42,10 +43,11 @@
     7 => 'Illuminate\\Pagination\\PaginationServiceProvider',
     8 => 'Illuminate\\Session\\SessionServiceProvider',
     9 => 'Illuminate\\View\\ViewServiceProvider',
-    10 => 'blog\\Providers\\AppServiceProvider',
-    11 => 'blog\\Providers\\AuthServiceProvider',
-    12 => 'blog\\Providers\\EventServiceProvider',
-    13 => 'blog\\Providers\\RouteServiceProvider',
+    10 => 'Mews\\Purifier\\PurifierServiceProvider',
+    11 => 'blog\\Providers\\AppServiceProvider',
+    12 => 'blog\\Providers\\AuthServiceProvider',
+    13 => 'blog\\Providers\\EventServiceProvider',
+    14 => 'blog\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (

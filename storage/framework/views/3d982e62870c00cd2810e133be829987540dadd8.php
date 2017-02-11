@@ -28,7 +28,7 @@
                     <span class="label label-danger"><?php echo e($tag->name); ?></span>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-                <p><?php echo e($post->author); ?> | <?php echo e($post->category->name); ?></p>
+                <p><?php echo e($post->author); ?> <?php if($post->category->id): ?>| <?php echo e($post->category->name); ?><?php endif; ?></p>
                 <p><?php echo e(date('M j, Y', strtotime($post->created_at))); ?></p>
                 <a href="<?php echo e(url('blog/'.$post->slug)); ?>" class="btn btn-primary btn-md">Read More</a>
               </div>
