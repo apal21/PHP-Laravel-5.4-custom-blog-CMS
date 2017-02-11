@@ -17,6 +17,10 @@
 	color: black;
 }
 
+.taglink, .taglink:hover {
+	color: white;
+}
+
 .glyphicon-tags {
 	font-size: 12px;
 }
@@ -46,6 +50,6 @@
 .featured-image {
 	width: 100%;
 	height: auto;
-	max-height: 300px;
+	max-height: 350px;
 	object-fit: cover;
 }

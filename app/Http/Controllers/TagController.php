@@ -9,7 +9,7 @@ use Session;
 class TagController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'search']);
     }
     /**
      * Display a listing of the resource.
@@ -104,5 +104,12 @@ class TagController extends Controller
         Session::flash('success', 'Tag successfully deleted');
 
         return redirect()->route('tags.index');
+    }
+
+    public function search($id) {
+
+        $tag = Tag::find($id);
+
+        return view('tags.search')->with('tag', $tag);
     }
 }

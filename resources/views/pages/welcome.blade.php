@@ -30,10 +30,10 @@
                 <div class="lead">{!! substr(strip_tags($post->body), 0, 150) !!} {{ strlen(strip_tags($post->body)) > 150 ? "..." : "" }}</div>
                 <div>
                   @foreach($post->tags as $tag)
-                    <span class="label label-danger">{{ $tag->name }}</span>
+                    <span class="label label-danger"><a href="{{ route('tags.search', $tag->id) }}" class="taglink">{{ $tag->name }}</a></span>
                   @endforeach
                 </div>
-                <p>{{ $post->author }} @if($post->category->id)| {{ $post->category->name }}@endif</p>
+                <p>{{ $post->author }} | <a href="{{ route('categories.search', $post->category->id) }}" class="nolink">{{ $post->category->name }}</a></p>
                 <p>{{ date('M j, Y', strtotime($post->created_at)) }}</p>
                 <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-primary btn-md">Read More</a>
               </div>
@@ -43,12 +43,20 @@
 
             </div>
 
-            <div class="col-md-3 col-md-offset-1 well">
-              <h2>Recent Posts</h2>
-              
-              @foreach($recents as $recent)
-                <p><span class="glyphicon glyphicon-paperclip"></span> <a href="{{ url('blog/'.$recent->slug) }}" class="nolink">{{ $recent->title }}</a></p>
-              @endforeach
+            <div class="col-md-3 col-md-offset-1">
+              <div class="row well">
+                <h2>Recent Posts</h2>
+                
+                @foreach($recents as $recent)
+                  <p><span class="glyphicon glyphicon-paperclip"></span> <a href="{{ url('blog/'.$recent->slug) }}" class="nolink">{{ $recent->title }}</a></p>
+                @endforeach
+              </div>
+              <div class="row well">
+                <h2>Categories</h2>
+                @foreach($categories as $category)
+                  <p><span class="glyphicon glyphicon-pushpin"></span> <a href="{{ route('categories.search', $category->id) }}" class="nolink"> {{ $category->name }}</a></p>
+                @endforeach
+              </div>
             </div>
         </div>
 

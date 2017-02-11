@@ -3,6 +3,7 @@
 	namespace blog\Http\Controllers;
 
 	use blog\Post;
+	use blog\Category;
 	use Illuminate\Http\Request;
 	use Mail;
 	use Session;
@@ -13,8 +14,9 @@
 
 			$posts = Post::orderBy('id', 'desc')->paginate(10);
 			$recents = Post::orderBy('id', 'desc')->take(5)->get();
+			$categories = Category::orderBy('id', 'asc')->get();
 
-			return view('pages.welcome')->with('posts', $posts)->with('recents', $recents);
+			return view('pages.welcome')->with('posts', $posts)->with('recents', $recents)->with('categories', $categories);
 
 		}
 

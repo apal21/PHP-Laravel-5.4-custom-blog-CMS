@@ -11,7 +11,7 @@ class CategoryController extends Controller
 
     public function __construct() {
 
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'search']);
     }
     /**
      * Display a listing of the resource.
@@ -100,5 +100,12 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         return redirect()->route('categories.index');
+    }
+
+    public function search($id) {
+
+        $category = Category::find($id);
+
+        return view('categories.search')->with('category', $category);
     }
 }
