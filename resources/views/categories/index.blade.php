@@ -18,7 +18,7 @@
 				@foreach($categories as $category)
 					<tr>
 						<td>{{ $category->id }}</td>
-						<td>{{ $category->name }}</td>
+						<td><a href="{{ route('categories.show', $category->id) }}" class="nolink">{{ $category->name }}</a></td>
 					</tr>
 				@endforeach
 				</tbody>

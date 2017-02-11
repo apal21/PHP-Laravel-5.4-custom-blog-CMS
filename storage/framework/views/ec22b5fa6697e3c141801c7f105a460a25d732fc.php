@@ -16,7 +16,7 @@
 				<?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<tr>
 						<td><?php echo e($category->id); ?></td>
-						<td><?php echo e($category->name); ?></td>
+						<td><a href="<?php echo e(route('categories.show', $category->id)); ?>" class="nolink"><?php echo e($category->name); ?></a></td>
 					</tr>
 				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				</tbody>

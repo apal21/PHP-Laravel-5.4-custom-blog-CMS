@@ -32,7 +32,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required|alpha_dash|max:255']);
+        $this->validate($request, ['name' => 'required|max:255']);
 
         $category = new Category;
 
@@ -52,7 +52,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('categories.show')->with('category', $category);
     }
 
     /**
@@ -63,7 +65,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -75,7 +79,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, ['name' => 'required|max:255']);
+
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+        $category->save();
+
+        Session::flash('success', 'Category has been updated');
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -86,6 +99,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->route('categories.index');
     }
 }
