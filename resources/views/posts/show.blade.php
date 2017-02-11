@@ -21,6 +21,7 @@
 			<div id="backend-comments" style="form-spacing-top">
 				<h3>Comments <small>{{ $post->comments()->count() }} Comments</small></h3>
 			</div>
+			@if($post->comments()->count() > 0)
 			<table class="table">
 				<thead>
 					<tr>
@@ -44,6 +45,7 @@
 					@endforeach
 				</tbody>
 			</table>
+			@endif
 		</div>
 
 		<div class="col-md-4">

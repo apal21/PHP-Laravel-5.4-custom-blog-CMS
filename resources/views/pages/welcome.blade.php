@@ -11,9 +11,8 @@
             <div class="col-md-12">
                 <div class="jumbotron">
                     <h1>Hello World</h1>
-                    <p>Testing... My Cusom Blog CMS. 
-                    <br>Built with laravel</p>
-                    <p><a href="#" class="btn btn-primary btn-lg">Popular Post</a></p>
+                    <p>Laravel 5.4 
+                    <br>Description</p>
                 </div>
             </div>
         </div>
@@ -41,8 +40,12 @@
 
             </div>
 
-            <div class="col-md-3 col-md-offset-1">
-              <h2>Sidebar</h2>
+            <div class="col-md-3 col-md-offset-1 well">
+              <h2>Recent Posts</h2>
+              
+              @foreach($recents as $recent)
+                <p><span class="glyphicon glyphicon-paperclip"></span> <a href="{{ url('blog/'.$recent->slug) }}" class="nolink">{{ $recent->title }}</a></p>
+              @endforeach
             </div>
         </div>
 

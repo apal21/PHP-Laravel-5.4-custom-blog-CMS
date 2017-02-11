@@ -12,8 +12,9 @@
 		public function getIndex() {
 
 			$posts = Post::orderBy('id', 'desc')->paginate(10);
+			$recents = Post::orderBy('id', 'desc')->take(5)->get();
 
-			return view('pages.welcome')->with('posts', $posts);
+			return view('pages.welcome')->with('posts', $posts)->with('recents', $recents);
 
 		}
 

@@ -9,9 +9,8 @@
             <div class="col-md-12">
                 <div class="jumbotron">
                     <h1>Hello World</h1>
-                    <p>Testing... My Cusom Blog CMS. 
-                    <br>Built with laravel</p>
-                    <p><a href="#" class="btn btn-primary btn-lg">Popular Post</a></p>
+                    <p>Laravel 5.4 
+                    <br>Description</p>
                 </div>
             </div>
         </div>
@@ -39,8 +38,12 @@
 
             </div>
 
-            <div class="col-md-3 col-md-offset-1">
-              <h2>Sidebar</h2>
+            <div class="col-md-3 col-md-offset-1 well">
+              <h2>Recent Posts</h2>
+              
+              <?php $__currentLoopData = $recents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $recent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <p><span class="glyphicon glyphicon-paperclip"></span> <a href="<?php echo e(url('blog/'.$recent->slug)); ?>" class="nolink"><?php echo e($recent->title); ?></a></p>
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
 

@@ -19,6 +19,7 @@
 			<div id="backend-comments" style="form-spacing-top">
 				<h3>Comments <small><?php echo e($post->comments()->count()); ?> Comments</small></h3>
 			</div>
+			<?php if($post->comments()->count() > 0): ?>
 			<table class="table">
 				<thead>
 					<tr>
@@ -42,6 +43,7 @@
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				</tbody>
 			</table>
+			<?php endif; ?>
 		</div>
 
 		<div class="col-md-4">

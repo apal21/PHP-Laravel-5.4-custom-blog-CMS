@@ -8,7 +8,7 @@
 
     @section('content')
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 col-md-offset-2">
                 <h1>Contact Me</h1>
 
                 <hr>
@@ -31,10 +31,6 @@
                         {{ Form::submit('Send Message', ['class' => 'btn btn-success']) }}
                     </div>
                 {{ Form::close() }}
-            </div>
-
-            <div class="col-md-3 col-md-offset-1">
-              <h2>Sidebar</h2>
             </div>
         </div>
     @endsection
