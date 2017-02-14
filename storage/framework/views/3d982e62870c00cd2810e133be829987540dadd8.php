@@ -21,9 +21,9 @@
               <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
               <div class="post">
-                <?php if($post->image != null): ?>
+                
                 <img src="<?php echo e(asset('images/'.$post->image)); ?>" class="featured-image img-responsive">
-                <?php endif; ?>
+                
                 <h2><?php echo e($post->title); ?></h2>
                 <div class="lead"><?php echo substr(strip_tags($post->body), 0, 150); ?> <?php echo e(strlen(strip_tags($post->body)) > 150 ? "..." : ""); ?></div>
                 <div>
