@@ -36,7 +36,7 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </td>
                         <td>
-                            <a href="<?php echo e(route('posts.show', $post->id)); ?>" class="btn btn-primary btn-sm btn-block pull-right">View</a>
+                            <a href="<?php echo e(url('blog/'.$post->slug)); ?>" class="btn btn-primary btn-sm btn-block pull-right">View</a>
                         </td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

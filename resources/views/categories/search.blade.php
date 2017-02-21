@@ -32,7 +32,7 @@
                         <td>{{ $post->id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>
-                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-default btn-sm btn-block pull-right">View</a>
+                            <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-default btn-sm btn-block pull-right">View</a>
                         </td>
                     </tr>
                     @endforeach

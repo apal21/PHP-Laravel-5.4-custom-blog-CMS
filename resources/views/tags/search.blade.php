@@ -37,7 +37,7 @@
                             @endforeach
                         </td>
                         <td>
-                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary btn-sm btn-block pull-right">View</a>
+                            <a href="{{ url('blog/'.$post->slug) }}" class="btn btn-primary btn-sm btn-block pull-right">View</a>
                         </td>
                     </tr>
                     @endforeach
